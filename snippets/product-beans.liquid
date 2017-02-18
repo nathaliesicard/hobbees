@@ -1,0 +1,17 @@
+<script>
+  var beans_filter = function (s){
+    var i = s.options.indexOf('beans_code');
+    if (i > -1) s.options.splice(i, 1);
+    var k = s.variants.length;
+    while(k--){
+      var e = s.variants[k];
+      for (var j=1; j<4; j++){
+        var o = e['option'+j];
+        if(o === '.') {e['option'+j] = null; e.options.splice(j-1, 1);}
+        if(o && (o.indexOf('#dsc_') > -1 || o.indexOf('#beans_') > -1 )) {s.variants.splice(k, 1); break;}
+      }
+      e.title =  e.title.replace(/ \/ \.$/, '');
+    }
+    return s;
+  }
+</script>
